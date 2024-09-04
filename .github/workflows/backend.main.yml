@@ -10,7 +10,6 @@ on:
 
 env:
   CONTAINER_IMAGE_NAME: mariammbello/resume
-  DOTNET_VERSION: '6.0.x'
 
 jobs:
   build-and-deploy:
