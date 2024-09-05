@@ -19,3 +19,4 @@ const getVisitCount = () => {
     return count;
 }
 
+console.log("I got here")
