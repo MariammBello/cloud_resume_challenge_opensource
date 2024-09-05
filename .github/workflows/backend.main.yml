@@ -9,7 +9,7 @@ on:
       - '.github/workflows/backend.main.yml'
 
 env:
-  CONTAINER_IMAGE_NAME: mariammbello/resume
+  CONTAINER_IMAGE_NAME: mariammbello/resume-backend
 
 jobs:
   build-and-deploy:
@@ -30,15 +30,8 @@ jobs:
 
     - name: 'Build Docker image'
       run: |
-        docker build -t ghcr.io/${{ env.CONTAINER_IMAGE_NAME }}:latest -f Dockerfile .
+        docker build -t ghcr.io/${{ env.CONTAINER_IMAGE_NAME }}:latest -f backend/Dockerfile .
 
     - name: 'Push Docker image'
       run: |
         docker push ghcr.io/${{ env.CONTAINER_IMAGE_NAME }}:latest
-
-    # - name: 'Deploy with environment variables'
-    #   run: |
-    #     docker run -d -p 80:80 \
-    #       -e MONGODB_CONNECTION_STRING=${{ secrets.MONGODB_CONNECTION_STRING }} \
-    #       -e MONGODB_DATABASE_NAME=${{ secrets.MONGODB_DATABASE_NAME }} \
-    #       ghcr.io/${{ env.CONTAINER_IMAGE_NAME }}:latest
