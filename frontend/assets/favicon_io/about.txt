@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Hi Melody
+- Font Author: Copyright (c) YoonDesign Inc. All Rights Reserved.
+- Font Source: https://fonts.gstatic.com/s/himelody/v15/46ktlbP8Vnz0pJcqCTbEf29E31BBGA.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))
