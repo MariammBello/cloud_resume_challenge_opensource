@@ -10,7 +10,7 @@ const getVisitCount = () => {
     fetch(backendApiUrl).then(response => {
         return response.json()
     }).then(response => {
-        console.log ("Website called function Api");
+        console.log ("Website called flaskapi");
         count =response.count;
         document.getElementById("counter").innerText =count;
     }).catch(function(error){
