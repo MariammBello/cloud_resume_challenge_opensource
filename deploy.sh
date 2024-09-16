@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Stopping and removing old frontend containers..."
 docker stop frontend
 docker rm frontend
