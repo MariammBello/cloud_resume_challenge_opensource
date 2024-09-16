@@ -44,7 +44,7 @@ jobs:
         username: ubuntu
         key: ${{ secrets.KEY }}
         port: 22
-        source: "./frontend/deploy_fe.sh"
+        source: "frontend/deploy_fe.sh"
         target: /home/ubuntu
 
     - name: 'Deploy to EC2'
