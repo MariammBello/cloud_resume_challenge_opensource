@@ -35,3 +35,26 @@ jobs:
     - name: 'Push Docker image'
       run: |
         docker push ghcr.io/${{ env.CONTAINER_IMAGE_NAME }}:latest
+
+  #Adding the complete deployment steps to actions
+    - name: 'copy file via ssh key'
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.HOST }}
+        username: ubuntu
+        key: ${{ secrets.KEY }}
+        port: 22
+        source: "deploy.sh"
+        target: /home/ubuntu
+
+    - name: 'Deploy to EC2'
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ubuntu
+        key: ${{ secrets.KEY }}
+        port: 22
+        script: |
+          ./deploy.sh
+
+      
