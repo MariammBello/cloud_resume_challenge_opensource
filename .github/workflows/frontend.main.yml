@@ -44,7 +44,7 @@ jobs:
         username: ubuntu
         key: ${{ secrets.KEY }}
         port: 22
-        source: "./frontend/deploy.sh"
+        source: "./frontend/deploy_fe.sh"
         target: /home/ubuntu
 
     - name: 'Deploy to EC2'
@@ -55,7 +55,7 @@ jobs:
         key: ${{ secrets.KEY }}
         port: 22
         script: |
-          chmod +x deploy.sh
-          sudo sh deploy.sh
+          chmod +x deploy_fe.sh
+          sudo sh deploy_fe.sh
 
       
