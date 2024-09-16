@@ -45,7 +45,8 @@ jobs:
         key: ${{ secrets.KEY }}
         port: 22
         source: "frontend/deploy_fe.sh"
-        target: /home/ubuntu/deploy_fe.sh
+        target: /home/ubuntu
+        strip_components: 1
 
     - name: 'Deploy to EC2'
       uses: appleboy/ssh-action@v1.0.3
