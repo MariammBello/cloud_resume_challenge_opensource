@@ -106,8 +106,12 @@ Here’s an example of a Docker Compose file for this project:
 
 ```
 version: '3'
+
 services:
   frontend:
+    # build:
+    #   context: ./frontend    # Directory containing the frontend Dockerfile and build context
+    #   dockerfile: Dockerfile  # Specify the Dockerfile to use (optional if named "Dockerfile")
     image: ghcr.io/mariammbello/resume-frontend:latest
     ports:
       - "80:80"
@@ -115,21 +119,26 @@ services:
       - mynetwork
 
   backend:
+    # build:
+    #   context: ./backend     # Directory containing the backend Dockerfile and build context
+    #   dockerfile: Dockerfile  # Specify the Dockerfile to use (optional if named "Dockerfile")
     image: ghcr.io/mariammbello/resume-backend:latest
-    environment:
-      MONGO_CONNECTION_STRING: "mongodb://mongodb:27017/"
-      MONGO_DATABASE_NAME: "resume_challenge"
     ports:
       - "5000:5000"
+    environment:
+      MONGO_CONNECTION_STRING: mongodb://mongodb:27017/
+      MONGO_DATABASE_NAME: resume_challenge
     networks:
       - mynetwork
 
   mongodb:
     image: mongo:latest
-    ports:
-      - "27017:27017"
     networks:
       - mynetwork
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db  # Volume mount for MongoDB data persistence
 
 networks:
   mynetwork:
@@ -137,6 +146,11 @@ networks:
 
 ``` 
 In this docker-compose.yml, we define all three services (frontend, backend, and MongoDB) and ensure they can communicate via a network (mynetwork). Docker Compose makes it easier to spin up or manage the entire app with a single command: ``` docker-compose up -d ```
+
+In the Docker Compose file, I've switched from using build (commented out) to image. Here’s why:
+
+Image refers to pre-built Docker images that are pulled from a registry (e.g., GHCR). This is faster and more efficient in production environments because the images are already built.
+Build is necessary when you are actively developing and making frequent changes to the code. You only need to build once and push the image to a registry, then use image in subsequent deployments.
 
 ## Requirements for Setting This Up
 **Codebase:**
