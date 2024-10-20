@@ -124,6 +124,7 @@ This section copies the deployment script to the EC2 instance and runs it via SS
         source: "deploy.sh"
         target: /home/ubuntu
         strip_components: 0
+        overwrite: true
 ``` 
 * Copy deploy.sh to EC2: Copies the deploy.sh script from your repository to the EC2 instance.
 * uses: The appleboy/scp-action@v0.1.7 is an action that securely copies files to a remote server using SCP (Secure Copy Protocol).
@@ -133,6 +134,7 @@ This section copies the deployment script to the EC2 instance and runs it via SS
 * source: The source file (deploy.sh) in your repository.
 * target: The destination on the EC2 instance.
 * strip_components: Removes leading path components from the source before copying. This is 0 because it is not required, since the script is not nested.
+* overwrite: This ensures the file is overwritten
 
 ```
     - name: 'Deploy to EC2 via SSH'

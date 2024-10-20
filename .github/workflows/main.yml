@@ -57,6 +57,7 @@ jobs:
         source: "deploy.sh"
         target: /home/ubuntu
         strip_components: 0
+        overwrite: true
 
     - name: 'Deploy to EC2 via SSH'
       uses: appleboy/ssh-action@v1.0.3
