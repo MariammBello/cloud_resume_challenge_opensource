@@ -11,7 +11,7 @@ docker pull ghcr.io/mariammbello/resume-backend:latest
 
 # Start everything using Docker Compose
 echo "Starting containers..."
-docker compose up -d
+docker compose up -d --pull
 
 echo "Update complete!"
  

@@ -71,32 +71,21 @@ This script stops and removes the old Docker containers, pulls the latest images
 ``` 
 #!/bin/bash
 
-# Frontend deployment
-echo "Stopping and removing old frontend containers..."
-docker stop frontend || true
-docker rm frontend || true
+# Stop and remove old containers
+echo "Stopping and removing old containers..."
+docker compose down || true
 
-echo "Pulling latest frontend images from GHCR..."
+# Pull latest images from GHCR
+echo "Pulling latest images from GHCR..."
 docker pull ghcr.io/mariammbello/resume-frontend:latest
-
-echo "Starting Frontend container..."
-docker run -d --name frontend -p 80:80 ghcr.io/mariammbello/resume-frontend:latest
-
-# Backend deployment
-echo "Stopping and removing old backend containers..."
-docker stop backend || true
-docker rm backend || true
-
-echo "Pulling latest backend images from GHCR..."
 docker pull ghcr.io/mariammbello/resume-backend:latest
 
-echo "Starting Backend container..."
-docker run -d --name backend -p 5000:5000 \
-  -e MONGO_CONNECTION_STRING="mongodb://mongodb:27017/" \
-  -e MONGO_DATABASE_NAME="resume_challenge" \
-  ghcr.io/mariammbello/resume-backend:latest
+# Start everything using Docker Compose
+echo "Starting containers..."
+docker compose up -d --pull
 
-echo "Deployment complete!"
+echo "Update complete!"
+
 ```
 
 ## Step 5: Automating with Docker Compose
