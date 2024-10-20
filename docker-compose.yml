@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  frontend:
+    build: ./frontend  # Frontend Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - mynetwork
+
+  backend:
+    build: ./backend  # Backend Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      MONGO_CONNECTION_STRING: mongodb://mongodb:27017/
+      MONGO_DATABASE_NAME: resume_challenge
+    networks:
+      - mynetwork
+
+  mongodb:
+    image: mongo:latest
+    networks:
+      - mynetwork
+    ports:
+      - "27017:27017"
+
+networks:
+  mynetwork:
+    driver: bridge
