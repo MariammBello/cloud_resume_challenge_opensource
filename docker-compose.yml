@@ -36,3 +36,6 @@ services:
 networks:
   mynetwork:
     driver: bridge
+
+volumes:
+  mongo-data:  # This defines the mongo-data volume

@@ -1,6 +1,4 @@
-frontend/gpthelp.html
 frontend/imagesold
-frontend/indexold.html
-frontend/cssold
-deploycopy.sh
+docker-compose-local.yml
+
 doc.md
