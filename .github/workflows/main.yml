@@ -54,7 +54,7 @@ jobs:
         username: ubuntu
         key: ${{ secrets.KEY }}
         port: 22
-        source: "deploy.sh"
+        source: "docker-compose.yml,deploy.sh"
         target: /home/ubuntu
         strip_components: 0
         overwrite: true
