@@ -1,22 +1,28 @@
-# Building a Full DevOps Pipeline for a Resume Counter Web Application Using Docker, GitHub Actions, and EC2
+# Building a Full DevOps Pipeline for a Cloud Resume Counter Application Using Docker, GitHub Actions, and EC2
 
 ## Overview of the Project:
-In this project, I’ve been working on building and automating a full CI/CD pipeline for a simple web application—a resume counter app. The frontend of the app displays a static webpage, and the backend, built using Flask, manages a MongoDB database that keeps track of how many times the page has been viewed.
+This project focuses on creating and automating a full CI/CD (Continuous Integration/ Continuous Deployment) pipeline for a simple web application—a resume counter app. The frontend is a static webpage, and the backend, built using Flask, connects to a MongoDB database to track and display how many times the page has been viewed.
 
-The purpose of this project is to not only create the application itself but also to understand and implement modern DevOps best practices. These practices include containerization using Docker, continuous integration and deployment using GitHub Actions, and hosting on a cloud environment, specifically AWS EC2.
+Originally inspired by the Cloud Resume Challenge, this project has evolved to embrace Free and Open Source Software (FOSS) principles, aiming to minimize dependencies on paid cloud services and reduce costs. The original project, which used proprietary services like Azure and Cosmos DB, was prone to limitations, including paid features and service disruptions when subscriptions lapsed. This version, however, replaces those components with free-tier AWS EC2 and open-source solutions like MongoDB, making it more scalable and cost-effective while maintaining functionality.
 
-The goal is to ensure that every time I update my code (frontend or backend), it triggers an automated process that builds my application, updates my Docker images, and deploys them to my EC2 instance—without any manual intervention.
+The project demonstrates the ability to build scalable cloud applications using open-source tools and services while maintaining a free-tier cloud infrastructure on AWS.
 
-## Tools and Technologies Used:
-Docker: To containerize both the frontend (served by Nginx) and the backend (Flask API). This ensures the app can run consistently across different environments.
+### Project Goals:
+- **Automation:** Ensure that every time code (frontend or backend) is updated, an automated process is triggered to build the application, update Docker images, and deploy them to an AWS EC2 instance.
+- **FOSS and Low Cost:** Replace paid and proprietary services with free-tier, open-source alternatives without compromising on functionality. The application should run on free-tier cloud infrastructure and use open-source tools.
+- **Application Features:** Users can view the resume webpage and see a real-time page view counter that updates with each visit.
 
-* GitHub Actions: For automating the build, push, and deployment of the application using a CI/CD pipeline.
+### Tools and Technologies Used:
+- **Amazon EC2 (Free Tier):** The web app is hosted on an AWS EC2 instance. EC2 provides scalable compute capacity in the cloud, and the free-tier option ensures that hosting is cost-free for the first year.
+- **Docker:** Both the frontend (served via Nginx) and the backend (Flask API) are containerized using Docker. Docker ensures consistency in how the app runs across different environments.
+- **GitHub Actions**: Used for continuous integration and deployment (CI/CD), GitHub Actions automates the build, push, and deployment process. It builds Docker images, pushes them to GitHub Container Registry (GHCR), and deploys the app to EC2.
+- **MongoDB:** A NoSQL database used to store and retrieve the page view count. MongoDB runs in a Docker container, making it easy to deploy and manage as part of the app.
+- **GitHub Container Registry (GHCR):** Used to store built Docker images before they are deployed to EC2.
+- **Frontend (HTML/CSS/JavaScript):** The frontend is a static webpage that interacts with the backend API to display the updated page view count.
+- **Backend (Flask in Python):** The backend API, built with Flask, handles requests from the frontend and interacts with the MongoDB database to update the page view counter.
 
-* AWS EC2: The cloud instance used to host the application.
-
-* MongoDB: To store and retrieve the page views for the resume counter.
-
-* GitHub Container Registry (GHCR): Used to store the built Docker images before deploying them to the EC2 instance.
+### How the System Works:
+The application consists of three core components—frontend, backend, and database—each of which is containerized using Docker. The backend fetches and updates the page view count stored in MongoDB and sends the updated count to the frontend, which displays it on a static HTML webpage.
 
 # Project Breakdown for Beginners:
 Let’s break down the full process of creating this automated CI/CD pipeline.
@@ -47,6 +53,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 5000
 CMD ["python", "main.py"]
 ```
+see [Codes Documentation](codesdoc.md)
 
 ## Step 3: Building CI/CD Pipeline with GitHub Actions
 To automate the deployment process, I created a GitHub Actions workflow (main.yml) that does the following:
@@ -59,7 +66,7 @@ To automate the deployment process, I created a GitHub Actions workflow (main.ym
 
 A deploy script (deploy.sh) is copied to the EC2 instance. This script automates the process of pulling the latest Docker images and restarting the containers.
 - **Deploy to EC2:** The deploy script is executed via SSH, ensuring the updated application is pulled and deployed on the EC2 instance.
-Checkout the mainyml documentation here to see full breakdown [mainyml.md](mainyml.md)
+Checkout the [Codes Documentation](codesdoc.md) documentation here to see full breakdown 
 
 
 ## Step 4: Deployment on AWS EC2
@@ -82,7 +89,7 @@ docker pull ghcr.io/mariammbello/resume-backend:latest
 
 # Start everything using Docker Compose
 echo "Starting containers..."
-docker compose up -d --pull
+docker compose up -d --pull always
 
 echo "Update complete!"
 
@@ -132,6 +139,9 @@ services:
 networks:
   mynetwork:
     driver: bridge
+
+volumes:
+  mongo-data:  # This defines the mongo-data volume
 
 ``` 
 In this docker-compose.yml, we define all three services (frontend, backend, and MongoDB) and ensure they can communicate via a network (mynetwork). Docker Compose makes it easier to spin up or manage the entire app with a single command: ``` docker-compose up -d ```
