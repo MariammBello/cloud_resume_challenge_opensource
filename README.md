@@ -162,7 +162,7 @@ Build is necessary when you are actively developing and making frequent changes 
 
 **GitHub Actions Setup:**
 * A GitHub repository with the above folder structure.
-* GitHub Secrets added for HOST, KEY, GITHUB_TOKEN, etc.
+* GitHub Secrets added for HOST, KEY,etc.
 
 **EC2 Instance:**
 * An Ubuntu EC2 instance with Docker and Docker Compose installed.
