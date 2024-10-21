@@ -53,7 +53,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 5000
 CMD ["python", "main.py"]
 ```
-see [Codes Documentation](codesdoc.md)
+see [Codes Documentation](codesdoc.md) for details of code
 
 ## Step 3: Building CI/CD Pipeline with GitHub Actions
 To automate the deployment process, I created a GitHub Actions workflow (main.yml) that does the following:
@@ -96,7 +96,7 @@ echo "Update complete!"
 ```
 
 ## Step 5: Automating with Docker Compose
-While the above deploy script works fine, we can further simplify and optimize this process using Docker Compose. Docker Compose allows us to manage multiple containers with a single YAML configuration file.
+We can further simplify and optimize this process using Docker Compose. Docker Compose allows us to manage multiple containers with a single YAML configuration file.
 
 Here’s an example of a Docker Compose file for this project:
 
