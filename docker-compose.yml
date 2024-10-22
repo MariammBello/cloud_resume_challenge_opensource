@@ -3,8 +3,8 @@ version: '3'
 services:
   frontend:
     # build:
-    #   context: ./frontend    # Directory containing the frontend Dockerfile and build context
-    #   dockerfile: Dockerfile  # Specify the Dockerfile to use (optional if named "Dockerfile")
+    #   context: .   # Directory containing the frontend Dockerfile and build context
+    #   dockerfile: ./frontend/Dockerfile  # Specify the Dockerfile to use (optional if named "Dockerfile")
     image: ghcr.io/mariammbello/resume-frontend:latest
     ports:
       - "80:80"
@@ -13,8 +13,8 @@ services:
 
   backend:
     # build:
-    #   context: ./backend     # Directory containing the backend Dockerfile and build context
-    #   dockerfile: Dockerfile  # Specify the Dockerfile to use (optional if named "Dockerfile")
+    #   context: .     # Directory containing the backend Dockerfile and build context
+    #   dockerfile: ./backend/Dockerfile  # Specify the Dockerfile to use (optional if named "Dockerfile")
     image: ghcr.io/mariammbello/resume-backend:latest
     ports:
       - "5000:5000"
