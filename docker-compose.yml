@@ -39,9 +39,9 @@ services:
 
 networks:
   mynetwork:
-    external: true
-    # driver: bridge
-    # name: mynetwork
+    # external: true
+    driver: bridge
+    name: mynetwork
 
 volumes:
   mongo-data:  # This defines the mongo-data volume
