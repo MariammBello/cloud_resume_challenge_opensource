@@ -69,3 +69,6 @@ jobs:
         script: |
           chmod +x /home/ubuntu/deploy.sh
           sudo sh /home/ubuntu/deploy.sh
+
+
+ #verifying copy worked

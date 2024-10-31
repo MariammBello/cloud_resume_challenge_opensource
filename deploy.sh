@@ -15,3 +15,4 @@ docker compose up -d --pull always
 
 echo "Update complete!"
  
+ #verifying copy worked
