@@ -6,6 +6,7 @@ services:
     #   context: .   # Directory containing the frontend Dockerfile and build context
     #   dockerfile: ./frontend/Dockerfile  # Specify the Dockerfile to use (optional if named "Dockerfile")
     image: ghcr.io/mariammbello/resume-frontend:latest
+    container_name: frontend
     ports:
       - "80:80"
     networks:
@@ -16,6 +17,7 @@ services:
     #   context: .     # Directory containing the backend Dockerfile and build context
     #   dockerfile: ./backend/Dockerfile  # Specify the Dockerfile to use (optional if named "Dockerfile")
     image: ghcr.io/mariammbello/resume-backend:latest
+    container_name: backend
     ports:
       - "5000:5000"
     environment:
@@ -26,6 +28,7 @@ services:
 
   mongodb:
     image: mongo:latest
+    container_name: mongodb
     networks:
       - mynetwork
     ports:
