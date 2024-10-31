@@ -71,4 +71,3 @@ jobs:
           sudo sh /home/ubuntu/deploy.sh
 
 
- #verifying copy worked
