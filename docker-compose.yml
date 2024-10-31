@@ -11,6 +11,7 @@ services:
       - "80:80"
     networks:
       - mynetwork
+      
 
   backend:
     # build:
@@ -38,7 +39,9 @@ services:
 
 networks:
   mynetwork:
-    driver: bridge
+    external: true
+    # driver: bridge
+    # name: mynetwork
 
 volumes:
   mongo-data:  # This defines the mongo-data volume
