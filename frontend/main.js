@@ -2,7 +2,7 @@
 window.addEventListener('DOMContentLoaded', (event) =>{
     getVisitCount();
 })
-const backendApiUrl = 'http://localhost:5000/GetResumeCounter';
+const backendApiUrl = 'http://backend:5000/GetResumeCounter';
 
 const getVisitCount = () => {
     let count = 30;
