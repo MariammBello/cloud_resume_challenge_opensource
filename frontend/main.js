@@ -2,7 +2,7 @@
 window.addEventListener('DOMContentLoaded', (event) =>{
     getVisitCount();
 })
-const backendApiUrl = 'http://backend:5000/GetResumeCounter';
+const backendApiUrl = 'https://mmb-api.hcsapp.cloud/GetResumeCounter';
 
 const getVisitCount = () => {
     let count = 30;
